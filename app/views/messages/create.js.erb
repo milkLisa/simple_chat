@@ -1,0 +1,22 @@
+<script type="text/javascript">
+  PrivatePub.sign({
+    channel: "/rooms/index",
+    timestamp: 1302306682972,
+    signature: "dc1c71d3e959ebb6f49aa6af088d",
+    server: "http://localhost:9292/faye"
+  });
+</script>
+
+<% publish_to '/rooms/index' do %>
+  var current_conversation = $("#messageBox_<%= @conversation.recipient_id %>");
+  if($(current_conversation).length) {
+    $("#messageBox_<%= @conversation.recipient_id %>").append("<%= j render(@message, remote: true) %>");
+  } else {
+    var sender = $("#unreadBox_<%= @message.sender_id %> span");
+    if($(sender).length) {
+        var count = $(sender).html();
+        $(sender).text(parseInt(count) + 1);
+        $("#unreadBox_<%= @message.sender_id %>").show();
+    }
+  }
+<% end %>

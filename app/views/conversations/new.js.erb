@@ -1,0 +1,4 @@
+$("#chat").html("<%= j render(@conversation, remote: true) %>");
+<% if !@messages.nil? %>
+    $("#messageBox_<%= @conversation.recipient_id %>").html("<%= j render(@message, remote: true) %>");
+<% end %>

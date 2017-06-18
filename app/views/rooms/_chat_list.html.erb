@@ -1,0 +1,22 @@
+<% @users.each do |user| %>
+    <li class="active bounceInDown">
+        <%= link_to new_conversation_path(:id => user.id), class: "clearfix", :remote => true do  %>
+            <img src="https://bootdey.com/img/Content/user_<%= user.id %>.jpg" alt="" class="img-circle">
+            <div class="friend-name">	
+                <strong><%= user.first_name %></strong>
+                <div id="unreadBox_<%= user.id %>" class="unread-group">
+                    <img src="<%= asset_path('circle-64.png') %>" class="unread-img">
+                    <span class="unread-no">1</span>
+                </div>
+            </div>
+            <!--div class="last-message text-muted">Hello, Are you there?</div>
+            <small class="time text-muted">Just now</small>
+            <small class="chat-alert label label-danger">1</small-->
+        <% end %>
+    </li>
+<% end %>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+    });
+</script>

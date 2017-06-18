@@ -1,0 +1,38 @@
+<div class="container bootstrap snippet">
+    <div class="row">
+		<div class="col-md-4 bg-white ">
+            <div class="row border-bottom padding-sm" style="height: 60px;">
+            	<div class="navigation-bar">
+                    <div>
+                        <img src="https://bootdey.com/img/Content/user_<%= current_user.id %>.jpg" alt="" class="img-circle">
+                    </div>
+                    <span>Hi <%= current_user.first_name %></span> | 
+                    <%= link_to('登出', destroy_user_session_path, :method => :delete) %>
+                    <%#= link_to('修改密碼', edit_registration_path(:user)) %>
+                </div>
+                <div class="user-info">
+                </div>
+            </div>
+            <!-- =============================================================== -->
+            <!-- member list -->
+            <ul class="friend-list">
+                <%= render "chat_list" %>
+                <!--li class="active bounceInDown">
+                	<a href="#" class="clearfix">
+                		<img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                		<div class="friend-name">	
+                			<strong>John Doe</strong>
+                		</div>
+                		<div class="last-message text-muted">Hello, Are you there?</div>
+                		<small class="time text-muted">Just now</small>
+                		<small class="chat-alert label label-danger">1</small>
+                	</a>
+                </li-->            
+            </ul>
+		</div>
+    	<div id="chat" class="col-md-8 bg-white">
+            <%= render "/conversations/conversation" %>
+        </div>
+	</div>
+</div>
+<%= subscribe_to '/rooms/index' %>
