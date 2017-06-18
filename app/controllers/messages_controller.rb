@@ -1,9 +1,9 @@
 class MessagesController < ApplicationController
 
     def create
-        @messages = Message.where(:conversation_id => @message.conversation_id).order("created_at ASC")
         @message = Message.create(message_params)
         @conversation = Conversation.find(@message.conversation_id)
+        @messages = Message.where(:conversation_id => @message.conversation_id).order("created_at ASC")#.last(10)
     end
 
     private

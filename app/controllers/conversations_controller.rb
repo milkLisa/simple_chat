@@ -11,7 +11,9 @@ class ConversationsController < ApplicationController
             end
 
             if !@conversation.nil?
-                @messages = Message.where(:conversation_id => @conversation.id).order("created_at ASC")
+                #set unread message status to readed
+                Message.where(:conversation_id => @conversation.id, :is_read => false).where.not(:sender_id =>current_user.id).update_all(:is_read => true)
+                @messages = Message.where(:conversation_id => @conversation.id).order("created_at ASC")#.last(10)
                 @message = Message.new
             else
                 show_error_message
@@ -22,10 +24,7 @@ class ConversationsController < ApplicationController
     private
 
     def show_error_message
-        flash[:alert] = "please try again later!"
-
-        respond_to do |format|
-            format.html root_path
-        end
+        flash[:alert] = "Please try again later!"
+        redirect_to root_path
     end
 end

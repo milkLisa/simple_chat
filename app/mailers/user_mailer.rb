@@ -5,7 +5,7 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.notify_message.subject
   #
-  default :from => "Lisa chat <wanyi231645@gmail.com>"
+  default :from => "user mailer <from@example.com>"
 
   def notify_message(user, message)
       @message = message

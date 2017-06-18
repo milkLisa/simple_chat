@@ -13,24 +13,24 @@
 ActiveRecord::Schema.define(version: 20170617071655) do
 
   create_table "conversations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
-    t.integer "sender_id"
-    t.integer "recipient_id"
+    t.integer "sender_id", null: false
+    t.integer "recipient_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "friends", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
-    t.integer "user_id"
-    t.integer "friend_id"
+    t.integer "user_id", null: false
+    t.integer "friend_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
-    t.integer "conversation_id"
-    t.text "content"
-    t.integer "sender_id"
-    t.boolean "is_read"
+    t.integer "conversation_id", null: false
+    t.text "content", null: false
+    t.integer "sender_id", null: false
+    t.boolean "is_read", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 20170617071655) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "first_name"
-    t.string "last_name"
+    t.string "first_name", default: "", null: false
+    t.string "last_name", default: "", null: false
     t.string "tel"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

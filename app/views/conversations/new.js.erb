@@ -1,4 +1,15 @@
+/* unread message */
+$("#unreadBox_<%= @conversation.sender_id %>, #unreadBox_<%= @conversation.recipient_id %>").find("span").html("0");
+$("#unreadBox_<%= @conversation.sender_id %>, #unreadBox_<%= @conversation.recipient_id %>").hide();
+
+/* add class to selected chat */
+$(".friend-list li.active a").removeClass("current-chat");
+$("#unreadBox_<%= @conversation.sender_id %>, #unreadBox_<%= @conversation.recipient_id %>").parents("li.active a").addClass("current-chat");
+
+/* reload conversation view */
 $("#chat").html("<%= j render(@conversation, remote: true) %>");
+
+/* reload messages view */
 <% if !@messages.nil? %>
     $("#messageBox_<%= @conversation.recipient_id %>").html("<%= j render(@message, remote: true) %>");
 <% end %>

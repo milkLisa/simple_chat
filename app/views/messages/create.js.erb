@@ -10,7 +10,8 @@
 <% publish_to '/rooms/index' do %>
   var current_conversation = $("#messageBox_<%= @conversation.recipient_id %>");
   if($(current_conversation).length) {
-    $("#messageBox_<%= @conversation.recipient_id %>").append("<%= j render(@message, remote: true) %>");
+    $("#messageBox_<%= @conversation.recipient_id %>").html("<%= j render(@message, remote: true) %>");
+    $("[id^=conversation_form] textarea").val('');
   } else {
     var sender = $("#unreadBox_<%= @message.sender_id %> span");
     if($(sender).length) {

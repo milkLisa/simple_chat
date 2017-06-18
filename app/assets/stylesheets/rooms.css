@@ -7,45 +7,13 @@ body {
   margin-top:20px;
 }
 
-.flash-bar {
-    text-align: center;
-}
-
-.navigation-bar {
-    height: 60px;
-    background-color: black;
-    color: white;
-    text-align: right;
-    padding: 10px;
-}
-
-.navigation-bar a {
-    color: white;
-}
-
-.input-group {
-    display: block;
-}
-
-.input-area {
-    width: 90%;
-    max-width: 90%;
-}
-
-.input-btn {
-    position: absolute;
-    top: 0;
-    left: 90%;
-    margin: 0 0 0 15px;
-}
-
 .bg-white {
   background-color: #fff;
 }
 
 .friend-list {
   list-style: none;
-margin-left: -40px;
+  margin-left: -40px;
 }
 
 .friend-list li {
@@ -72,6 +40,10 @@ margin-left: -40px;
 
 .friend-list li.active a {
   background-color: #f1f5fc;
+}
+
+.friend-list li.active a:hover {
+  background-color: #dde9f4;
 }
 
 .friend-list li a .friend-name, 
@@ -164,6 +136,7 @@ img {
 
 .chat li.left .chat-body {
   margin-left: 70px;
+  margin-right: 70px;
   background-color: #fff;
 }
 
@@ -227,6 +200,7 @@ img {
 }
 
 .chat li.right .chat-body {
+  margin-left: 70px;
   margin-right: 70px;
   background-color: #fff;
 }
@@ -252,4 +226,56 @@ img {
 a:hover, a:active, a:focus {
   text-decoration: none;
   outline: 0;
+}
+
+/*================ fixed ===============*/
+.left-area {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.left-area ul {
+  margin-bottom: 0;
+}
+
+.right-area {
+  padding: 10px;
+}
+
+.flash-bar {
+    text-align: center;
+}
+
+.navigation-bar {
+    height: 60px;
+    background-color: black;
+    color: white;
+    text-align: right;
+    padding: 10px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.navigation-bar a {
+    color: white;
+}
+
+.input-group {
+    display: block;
+}
+
+.input-area {
+    width: 90%;
+    max-width: 90%;
+}
+
+.input-btn {
+    position: absolute;
+    top: 0;
+    left: 90%;
+    margin: 0 0 0 15px;
+}
+
+.friend-list li.active a.current-chat {
+  background-color: #9dd0eb;
 }

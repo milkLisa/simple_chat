@@ -1,16 +1,18 @@
-<% @messages.each do |msg| %>
-    <li class="left clearfix">
-        <span class="chat-img pull-left">
-            <img src="https://bootdey.com/img/Content/user_<%= msg.sender_id %>.jpg" alt="User Avatar">
-        </span>
-        <div class="chat-body clearfix">
-            <div class="header">
-                <strong class="primary-font"><%= msg.sender.first_name %> <%= msg.sender.last_name %></strong>
-                <small class="pull-right text-muted"><i class="fa fa-clock-o"></i><%= msg.created_at.strftime("%Y-%m-%d %H:%M:%S") %></small>
+<% if !@messages.nil? %>
+    <% @messages.each do |msg| %>
+        <li class="<% if msg.sender_id == current_user.id %>right<% else %>left<% end %> clearfix">
+            <span class="chat-img pull-<% if msg.sender_id == current_user.id %>right<% else %>left<% end %>">
+                <img src="https://bootdey.com/img/Content/user_<%= msg.sender_id %>.jpg" alt="User Avatar">
+            </span>
+            <div class="chat-body clearfix">
+                <div class="header">
+                    <strong class="primary-font"><%= msg.sender.first_name %> <%= msg.sender.last_name %></strong>
+                    <small class="pull-right text-muted"><i class="fa fa-clock-o"></i><%= msg.created_at.strftime("%Y-%m-%d %H:%M:%S") %></small>
+                </div>
+                <p>
+                    <%= msg.content %>
+                </p>
             </div>
-            <p>
-                <%= msg.content %>
-            </p>
-        </div>
-    </li>
+        </li>
+    <% end %>
 <% end %>
