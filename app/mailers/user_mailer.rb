@@ -8,7 +8,6 @@ class UserMailer < ApplicationMailer
   default :from => "user mailer <from@example.com>"
 
   def notify_message(user, message)
-      @message = message
-      mail(:to => "milk45678@yahoo.com.tw", :subject => "New Message")
+      mail(:to => user.email, :subject => "New Message")
   end
 end
