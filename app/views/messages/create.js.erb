@@ -1,23 +1,19 @@
-<script type="text/javascript">
-  PrivatePub.sign({
-    channel: "/rooms/index",
-    timestamp: 1302306682972,
-    signature: "dc1c71d3e959ebb6f49aa6af088d",
-    server: "http://localhost:9292/faye"
-  });
-</script>
-
 <% publish_to '/rooms/index' do %>
-  var current_conversation = $("#messageBox_<%= @conversation.recipient_id %>");
+  var user_id = parseInt($("#userInfo").attr("data-uid"));
+  var current_conversation = $("#messageBox_<%= @conversation.id %>");
   if($(current_conversation).length) {
-    $("#messageBox_<%= @conversation.recipient_id %>").html("<%= j render(@message, remote: true) %>");
-    $("[id^=conversation_form] textarea").val('');
-  } else {
-    var sender = $("#unreadBox_<%= @message.sender_id %> span");
-    if($(sender).length) {
-        var count = $(sender).html();
-        $(sender).text(parseInt(count) + 1);
-        $("#unreadBox_<%= @message.sender_id %>").show();
+    if(parseInt(<%= current_user.id%>) != user_id) {
+      $.ajax({url:"/messages/set_readed", data:{message_id: <%= @message.id %>}})
+    } else {
+      $("[id^=conversation_form] textarea").val('');
+      $(current_conversation).append("<%= j render(@message, remote: true) %>");
     }
+  } else if(user_id == <%= @conversation.sender_id %> || user_id == <%= @conversation.recipient_id %>) {
+    // update unread status
+    $.ajax({url:"/messages/get_unread", data:{user_id: user_id}})
+
+    var sender = $("#unreadBox_<%= @message.sender_id %> span");
+    $(sender).text(<%= @send_unread_messages.size %>);
+    $(sender).parents("div.unread-group").show();
   }
 <% end %>

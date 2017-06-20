@@ -1,12 +1,12 @@
-<% @users.each do |user| %>
+<% @users_array.each do |hash| %>
     <li class="active bounceInDown">
-        <%= link_to new_conversation_path(:id => user.id), class: "clearfix", :remote => true do  %>
-            <img src="https://bootdey.com/img/Content/user_<%= user.id %>.jpg" alt="" class="img-circle">
+        <%= link_to new_conversation_path(:id => hash[:user].id), class: "clearfix", :remote => true do  %>
+            <img src="https://bootdey.com/img/Content/user_<%= hash[:user].id %>.jpg" alt="" class="img-circle">
             <div class="friend-name">	
-                <strong><%= user.first_name %> <%= user.last_name %></strong>
-                <div id="unreadBox_<%= user.id %>" class="unread-group">
+                <strong><%= hash[:user].first_name %> <%= hash[:user].last_name %></strong>
+                <div id="unreadBox_<%= hash[:user].id %>" class="unread-group" style="display:<% if hash[:unread_message_count] > 0 %>block<% else %>none<% end %>;">
                     <img src="<%= asset_path('circle-64.png') %>" class="unread-img">
-                    <span class="unread-no">0</span>
+                    <span class="unread-no"><%= hash[:unread_message_count] %></span>
                 </div>
             </div>
         <% end %>

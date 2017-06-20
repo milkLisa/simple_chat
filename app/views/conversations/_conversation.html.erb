@@ -4,8 +4,7 @@
     <% else %>
         <!--=========================================================-->
         <!-- selected chat -->
-        <ul id="messageBox_<%= @conversation.recipient_id %>" class="chat">
-            <%= render "/messages/message", remote: true %>
+        <ul id="messageBox_<%= @conversation.id %>" class="chat">
         </ul>
     </div>
     <div class="chat-box bg-white">

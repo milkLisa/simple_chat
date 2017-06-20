@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :conversations
-  resources :messages
-  #resources :friends
+  resources :messages do
+      get :set_readed, on: :collection 
+      get :get_unread, on: :collection 
+  end
 
   root :to => "rooms#index"
 end

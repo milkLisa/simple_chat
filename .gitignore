@@ -42,3 +42,7 @@ bower.json
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore private configuration.
+/config/database.yml
+/config/email.yml

@@ -1,15 +1,19 @@
+var unread_group = $("#unreadBox_<%= @conversation.sender_id %>, #unreadBox_<%= @conversation.recipient_id %>");
 /* unread message */
-$("#unreadBox_<%= @conversation.sender_id %>, #unreadBox_<%= @conversation.recipient_id %>").find("span").html("0");
-$("#unreadBox_<%= @conversation.sender_id %>, #unreadBox_<%= @conversation.recipient_id %>").hide();
+$(unread_group).find("span").html("0");
+$(unread_group).hide();
 
 /* add class to selected chat */
 $(".friend-list li.active a").removeClass("current-chat");
-$("#unreadBox_<%= @conversation.sender_id %>, #unreadBox_<%= @conversation.recipient_id %>").parents("li.active a").addClass("current-chat");
+$(unread_group).parents("li.active a").addClass("current-chat");
+
+/* reset navigation bar */
+$("#unreadCntBox").html("<%= j render("/rooms/msg_nav", remote: true) %>");
 
 /* reload conversation view */
 $("#chat").html("<%= j render(@conversation, remote: true) %>");
 
 /* reload messages view */
 <% if !@messages.nil? %>
-    $("#messageBox_<%= @conversation.recipient_id %>").html("<%= j render(@message, remote: true) %>");
+    $("#messageBox_<%= @conversation.id %>").html("<%= j render(@message, remote: true) %>");
 <% end %>

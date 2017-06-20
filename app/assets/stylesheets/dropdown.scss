@@ -1,0 +1,126 @@
+/*----------------------------
+	The Navigation Menu
+-----------------------------*/
+#msgNav {
+
+	ul{
+		z-index: 9;
+		position:absolute;
+		list-style:none;
+		text-align:center;
+		width:350px;
+		right: 0;
+		top: 15px;
+		margin-left:-90px;
+		font:bold 12px 'Open Sans Condensed', sans-serif;
+		
+		/* This is important for the show/hide CSS animation */
+		max-height:0px;
+		overflow:hidden;
+		
+		-webkit-transition:max-height 0.4s linear;
+		-moz-transition:max-height 0.4s linear;
+		transition:max-height 0.4s linear;
+	}
+
+	ul li{
+		background-color:#313131;
+		height: 80px;
+	}
+
+	ul li a{
+		padding:12px;
+		color:#fff !important;
+		text-decoration:none !important;
+		display:block;
+	}
+
+	ul li:nth-child(odd){ /* zebra stripes */
+		background-color:#363636;
+	}
+
+	ul li:hover{
+		background-color:#444;
+	}
+
+	ul li:first-child{
+		border-radius:3px 3px 0 0;
+		margin-top:25px;
+		position:relative;
+	}
+
+	ul li:first-child:before{ /* the pointer tip */
+		content:'';
+		position:absolute;
+		width:1px;
+		height:1px;
+		border:5px solid transparent;
+		border-bottom-color:#313131;
+		right:30%;
+		top:-10px;
+		margin-left:-5px;
+	}
+
+	ul li:last-child{
+		border-bottom-left-radius:3px;
+		border-bottom-right-radius:3px;
+	}
+
+	ul li a div {
+		text-align: center;
+	}
+
+	ul li a > p {
+		text-align: left;
+	}
+
+	ul li a div:first-child {
+		float: left;
+		margin-right: 10px;
+	}
+
+	ul li a div:first-child p {
+		margin: 0;
+	}
+
+	ul li a div:last-child {
+		text-align: right;
+		position: relative;
+		bottom: -20px;
+	}
+	/* This will trigger the CSS */
+	/* transition animation on hover */
+
+	&:hover ul{
+		max-height:300px; /* Increase when adding more dropdown items */
+	}
+}
+
+#unreadMessageBox {
+
+	ul li a{
+		padding:12px;
+		text-decoration:none !important;
+		display:block;
+	}
+
+	ul li:hover{
+		background-color:#f7f7f7;
+	}
+
+	ul li a > div:first-child {
+		float: left;
+		margin-right: 10px;
+	}
+
+	ul li a > div:first-child p {
+		margin: 0;
+	}
+
+	ul li > div:last-child {
+		text-align: right;
+		position: relative;
+		bottom: 30px;
+		right: 30px;
+	}
+}

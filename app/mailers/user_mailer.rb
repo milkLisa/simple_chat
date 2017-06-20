@@ -9,6 +9,6 @@ class UserMailer < ApplicationMailer
 
   def notify_message(user, message)
       @message = message
-      mail(:to => user.email, :subject => "New Message")
+      mail(:to => "milk45678@yahoo.com.tw", :subject => "New Message")
   end
 end

@@ -12,9 +12,13 @@ class ConversationsController < ApplicationController
 
             if !@conversation.nil?
                 #set unread message status to readed
-                Message.where(:conversation_id => @conversation.id, :is_read => false).where.not(:sender_id =>current_user.id).update_all(:is_read => true)
-                @messages = Message.where(:conversation_id => @conversation.id).order("created_at ASC")#.last(10)
+                @messages = Message.get_messages(@conversation.id)
+                @messages.where.not(:sender_id =>current_user.id).update_all(:is_read => true)
+                @messages.reload
                 @message = Message.new
+
+                @unread_messages = Message.get_receive_unread_messages(Conversation.get_exist_conversation(current_user.id), current_user.id)
+                
             else
                 show_error_message
             end

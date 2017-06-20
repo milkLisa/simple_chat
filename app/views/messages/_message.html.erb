@@ -1,13 +1,29 @@
-<% if !@messages.nil? %>
+<% if !@message.id.nil?%>
+<% msg = @message %>
+<li class="<% if msg.sender_id == current_user.id %>right<% else %>left<% end %> clearfix" sender-id=<%= msg.sender_id%>  current-id=<%= current_user.id %>>
+    <span class="chat-img pull-<% if msg.sender_id == current_user.id %>right<% else %>left<% end %>">
+        <img src="https://bootdey.com/img/Content/user_<%= msg.sender_id %>.jpg" alt="User Avatar">
+    </span>
+    <div class="chat-body clearfix">
+        <div class="header">
+            <strong class="primary-font"><%= msg.sender.first_name %> <%= msg.sender.last_name %></strong>
+            <small class="pull-right text-muted" data-toggle="tooltip" data-placement="bottom" title="<%= msg.created_at.strftime("%Y-%m-%d %H:%M:%S") %>"><i class="fa fa-clock-o"></i><%= distance_of_time_in_words(Time.now, msg.created_at) %> ago</small>
+        </div>
+        <p>
+            <%= msg.content %>
+        </p>
+    </div>
+</li>
+<% elsif !@messages.nil? %>
     <% @messages.each do |msg| %>
-        <li class="<% if msg.sender_id == current_user.id %>right<% else %>left<% end %> clearfix">
+        <li class="<% if msg.sender_id == current_user.id %>right<% else %>left<% end %> clearfix" sender-id=<%= msg.sender_id%>  current-id=<%= current_user.id %>>
             <span class="chat-img pull-<% if msg.sender_id == current_user.id %>right<% else %>left<% end %>">
                 <img src="https://bootdey.com/img/Content/user_<%= msg.sender_id %>.jpg" alt="User Avatar">
             </span>
             <div class="chat-body clearfix">
                 <div class="header">
                     <strong class="primary-font"><%= msg.sender.first_name %> <%= msg.sender.last_name %></strong>
-                    <small class="pull-right text-muted"><i class="fa fa-clock-o"></i><%= msg.created_at.strftime("%Y-%m-%d %H:%M:%S") %></small>
+                    <small class="pull-right text-muted" data-toggle="tooltip" data-placement="bottom" title="<%= msg.created_at.strftime("%Y-%m-%d %H:%M:%S") %>"><i class="fa fa-clock-o"></i><%= distance_of_time_in_words(Time.now, msg.created_at) %> ago</small>
                 </div>
                 <p>
                     <%= msg.content %>

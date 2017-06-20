@@ -247,6 +247,7 @@ a:hover, a:active, a:focus {
 }
 
 .navigation-bar {
+    font-size: 16px;
     height: 60px;
     background-color: black;
     color: white;
@@ -258,6 +259,22 @@ a:hover, a:active, a:focus {
 
 .navigation-bar a {
     color: white;
+}
+
+.user-info {
+  margin-left: 60px;
+}
+
+.user-info > * {
+  float: right;
+}
+
+.user-info .unread-group {
+  margin-top: 0px;
+}
+
+.user-info .unread-group .unread-no {
+  bottom: 100%;
 }
 
 .input-group {

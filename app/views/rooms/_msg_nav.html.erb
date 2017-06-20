@@ -1,0 +1,41 @@
+<div id="msgNav" style="display:<% if @unread_messages.size > 0 %>block<% else %>none<% end %>;">
+    <div>
+        <span>&nbsp&nbsp&nbsp</span>
+        <span>Messages</span>
+        <div class="unread-group" style="display:block;">
+            <img src="<%= asset_path('circle-64.png') %>" class="unread-img">
+            <span class="unread-no"><%= @unread_messages.size %></span>
+        </div>
+    </div>
+    <ul>
+        <% @unread_messages.take(3).each do |msg| %>
+        <li>
+            <%= link_to new_conversation_path(:id => msg.sender_id), class: "clearfix", :remote => true do  %>
+                <div>
+                    <img src="https://bootdey.com/img/Content/user_<%= msg.sender_id %>.jpg" alt="" class="img-circle">
+                    <p class="primary-font"><%= msg.sender.first_name %></p>
+                </div>
+                <p>
+                    <%= truncate(msg.content, length: 10) %>...
+                </p>
+                <div>
+                    <small class="pull-right text-muted"><i class="fa fa-clock-o"></i><%= distance_of_time_in_words(Time.now, msg.created_at) %> ago</small>
+                </div>
+            <% end %>
+        </li>
+        <% end %>
+        <% if @unread_messages.size > 3 %>
+            <li id="showAllList">
+                <%= link_to "Show all", 'javascript:;' %>
+            </li>
+        <% end %>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#showAllList").click(function(){
+            $("#chat").html("<%= j render("/rooms/unread_list", remote: true) %>");
+        });
+    });
+</script>

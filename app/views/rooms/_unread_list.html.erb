@@ -1,0 +1,20 @@
+<div id="unreadMessageBox">
+    <ul class="chat">
+        <% @unread_messages.each do |msg| %>
+        <li>
+            <%= link_to new_conversation_path(:id => msg.sender_id), class: "clearfix", :remote => true do  %>
+                <div>
+                    <img src="https://bootdey.com/img/Content/user_<%= msg.sender_id %>.jpg" alt="" class="img-circle">
+                    <p class="primary-font"><%= msg.sender.first_name %> <%= msg.sender.last_name %></p>
+                </div>
+                <p>
+                    <%= truncate(msg.content, length: 50) %>...
+                </p>
+            <% end %>
+            <div>
+                <small class="pull-right text-muted" data-toggle="tooltip" data-placement="bottom" title="<%= msg.created_at.strftime("%Y-%m-%d %H:%M:%S") %>"><i class="fa fa-clock-o"></i><%= distance_of_time_in_words(Time.now, msg.created_at) %> ago</small>
+            </div>
+        </li>
+        <% end %>
+    </ul>
+</div>
