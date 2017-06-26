@@ -1,6 +1,7 @@
 # Simple Chat
 
 Use devise, faye, private_pub, thin, SMTP and SMS
+Add rolify and cancancan to manage roles
 
 ## Preceding operation
 
