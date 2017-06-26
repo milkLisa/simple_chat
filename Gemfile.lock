@@ -50,6 +50,7 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.3)
     byebug (9.0.6)
+    cancancan (1.17.0)
     capybara (2.14.3)
       addressable
       mime-types (>= 1.16)
@@ -98,6 +99,8 @@ GEM
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
     ffi (1.9.18-x86-mingw32)
+    font-awesome-rails (4.7.0.2)
+      railties (>= 3.2, < 5.2)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     http_parser.rb (0.6.0)
@@ -175,6 +178,7 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    rolify (5.1.0)
     rubyzip (1.2.1)
     sass (3.4.24)
     sass-rails (5.0.6)
@@ -230,13 +234,15 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  bcrypt (~> 3.1.11)
+  bcrypt
   bootstrap-sass
   byebug
+  cancancan (~> 1.10)
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   devise
   faye
+  font-awesome-rails
   jbuilder (~> 2.5)
   jquery-rails
   kaminari
@@ -244,6 +250,7 @@ DEPENDENCIES
   mysql2 (~> 0.4.6)
   private_pub
   rails (~> 5.1.1)
+  rolify
   sass-rails (~> 5.0)
   selenium-webdriver
   thin (~> 1.6, >= 1.6.4)

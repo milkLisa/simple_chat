@@ -5,9 +5,11 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.notify_message.subject
   #
-  default :from => "user mailer <from@example.com>"
+  default :from => 'user mailer <from@example.com>'
 
-  def notify_message(user, message)
-      mail(:to => user.email, :subject => "New Message")
+  def notify_message(email, message, subject)
+      mail(:to => email, :body => message, :subject => subject)
+
+      render json: nil, status: :ok
   end
 end

@@ -1,14 +1,21 @@
 <div class="container bootstrap snippet">
-    <div class="row">
+    <div class="row" style="height: 80vh;">
 		<div class="col-md-4 left-area">
             <div id="userInfo" data-uid=<%= current_user.id %> class="row border-bottom padding-sm navigation-bar">
                 <div>
                     <img src="https://bootdey.com/img/Content/user_<%= current_user.id %>.jpg" alt="" class="img-circle">
+                    <%# if can?(:manage, :all) || current_user.has_role?(:mlo)%>
+                    <span class="role-text">[<%= current_user.roles.first.name.capitalize %>]</span>
+                    <%# end %>
                 </div>
                 <div class="user-info">
+                    <%= button_to user_path(:id => current_user.id), method: :get, class: "user-edit-btn", :remote => true do %>
+                        <span class="fa fa-cog fa-1x" title="Edit my profile" aria-hidden="true"></span>
+                    <% end %>
+                    <span>&nbsp|&nbsp</span>
                     <%= link_to('登出', destroy_user_session_path, :method => :delete) %>
                     <%#= link_to('修改密碼', edit_registration_path(:user)) %>
-                    <span>&nbsp&nbsp&nbsp</span>
+                    <span>&nbsp|&nbsp</span>
                     <div id="unreadCntBox">
                         <%= render "msg_nav" %>
                     </div>

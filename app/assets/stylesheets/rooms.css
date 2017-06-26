@@ -45,6 +45,11 @@ body {
 .friend-list li.active a:hover {
   background-color: #dde9f4;
 }
+.friend-list li a .friend-name strong {
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+}
 
 .friend-list li a .friend-name, 
 .friend-list li a .friend-name:hover {
@@ -79,22 +84,22 @@ small, .small {
 .unread-group {
   float: right;
   margin-top: 10px;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   text-align: center;
   display: none;
 }
 
 .unread-group .unread-img {
   position: relative;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 
 .unread-group .unread-no {
   position: relative;
   color: white;
-  bottom: 80%;
+  bottom: 90%;
 }
 
 .chat-empty-message {
@@ -106,16 +111,15 @@ small, .small {
 }
 
 .chat-message {
-    padding: 60px 20px 115px;
+    overflow: auto;
+    height: 100%;
+    background: #f9f9f9;  
+    padding: 20px;
 }
 
 .chat {
     list-style: none;
     margin: 0;
-}
-
-.chat-message{
-    background: #f9f9f9;  
 }
 
 .chat li img {
@@ -230,16 +234,24 @@ a:hover, a:active, a:focus {
 
 /*================ fixed ===============*/
 .left-area {
+  height: 100%;
   padding-left: 0;
   padding-right: 0;
 }
 
 .left-area ul {
   margin-bottom: 0;
+  height: 90%;
+  overflow: auto;
 }
 
 .right-area {
+  height: 100%;
   padding: 10px;
+}
+
+.coversation-box {
+    padding-bottom: 85px;
 }
 
 .flash-bar {
@@ -247,7 +259,7 @@ a:hover, a:active, a:focus {
 }
 
 .navigation-bar {
-    font-size: 16px;
+    font-size: 14px;
     height: 60px;
     background-color: black;
     color: white;
@@ -295,4 +307,37 @@ a:hover, a:active, a:focus {
 
 .friend-list li.active a.current-chat {
   background-color: #9dd0eb;
+}
+
+.edit-type a {
+    margin-right: 50px;
+}
+
+.edit-type .button_to {
+    position: relative;
+    bottom: 55px;
+    right: 10px;
+}
+
+.edit-type .button_to .user-edit-btn {
+    float: right;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.role-text {
+    float: left;
+    margin: 10px;
+}
+
+fieldset {
+    margin-top: 20px;
+}
+
+fieldset legend {
+    margin-bottom: 0;
+}
+
+.fa-cog {
+    color: black;
 }

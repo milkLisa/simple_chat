@@ -2,11 +2,15 @@
   var user_id = parseInt($("#userInfo").attr("data-uid"));
   var current_conversation = $("#messageBox_<%= @conversation.id %>");
   if($(current_conversation).length) {
+    /*in conversation*/
     if(parseInt(<%= current_user.id%>) != user_id) {
+      //recipient
       $.ajax({url:"/messages/set_readed", data:{message_id: <%= @message.id %>}})
     } else {
+      //sender
       $("[id^=conversation_form] textarea").val('');
       $(current_conversation).append("<%= j render(@message, remote: true) %>");
+      $("#chat .chat-message").scrollTop($("#chat .chat-message")[0].scrollHeight);
     }
   } else if(user_id == <%= @conversation.sender_id %> || user_id == <%= @conversation.recipient_id %>) {
     // update unread status

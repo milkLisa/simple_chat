@@ -10,9 +10,11 @@ end
 gem 'rails', '~> 5.1.1'
 # Use mysql2 as the database for Active Record
 gem 'mysql2', '~> 0.4.6'
-# Use devise for authentication
+# For authentication
 gem 'devise'
-# Use faye private_pub for private pub/sub messaging
+gem 'rolify'
+gem 'cancancan', '~> 1.10'
+# For private pub/sub messaging
 gem 'faye'
 gem 'private_pub'
 # Use Thin as the web server
@@ -23,6 +25,8 @@ gem 'twilio-ruby', '~> 4.11', '>= 4.11.1'
 gem 'bootstrap-sass'
 # Use jquery
 gem 'jquery-rails'
+# Use font-awesome for stylesheets
+gem "font-awesome-rails"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -39,7 +43,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.11'
+gem 'bcrypt', :platforms => :ruby
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

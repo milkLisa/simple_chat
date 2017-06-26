@@ -1,1 +1,2 @@
 $("#messageBox_<%= @conversation.id %>").append("<%= j render(@message, remote: true) %>");
+$("#chat .chat-message").scrollTop($("#chat .chat-message")[0].scrollHeight);

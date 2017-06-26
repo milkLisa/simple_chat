@@ -11,9 +11,12 @@ $(unread_group).parents("li.active a").addClass("current-chat");
 $("#unreadCntBox").html("<%= j render("/rooms/msg_nav", remote: true) %>");
 
 /* reload conversation view */
-$("#chat").html("<%= j render(@conversation, remote: true) %>");
+$("#chat").addClass("coversation-box").html("<%= j render(@conversation, remote: true) %>");
+
 
 /* reload messages view */
 <% if !@messages.nil? %>
     $("#messageBox_<%= @conversation.id %>").html("<%= j render(@message, remote: true) %>");
 <% end %>
+
+$("#chat .chat-message").scrollTop($("#chat .chat-message")[0].scrollHeight);

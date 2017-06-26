@@ -1,14 +1,22 @@
 <% @users_array.each do |hash| %>
-    <li class="active bounceInDown">
+    <li class="active bounceInDown <% if current_user.has_role?(:admin) && !hash[:user].has_any_role?(:system, :admin) %>edit-type<% end %>">
         <%= link_to new_conversation_path(:id => hash[:user].id), class: "clearfix", :remote => true do  %>
             <img src="https://bootdey.com/img/Content/user_<%= hash[:user].id %>.jpg" alt="" class="img-circle">
-            <div class="friend-name">	
+            <div class="friend-name">
+                <%# if can?(:manage, :all) || current_user.has_role?(:mlo)%>
+                <span class="role-text">[<%= hash[:user].roles.first.name.capitalize %>]</span>
+                <%# end%>
                 <strong><%= hash[:user].first_name %> <%= hash[:user].last_name %></strong>
                 <div id="unreadBox_<%= hash[:user].id %>" class="unread-group" style="display:<% if hash[:unread_message_count] > 0 %>block<% else %>none<% end %>;">
                     <img src="<%= asset_path('circle-64.png') %>" class="unread-img">
                     <span class="unread-no"><%= hash[:unread_message_count] %></span>
                 </div>
             </div>
+        <% end %>
+        <% if current_user.has_role?(:admin) && !hash[:user].has_any_role?(:system, :admin) %>
+            <%= button_to user_path(:id => hash[:user].id), method: :get, class: "user-edit-btn", :remote => true do %>
+            <span class="fa fa-cog fa-1x" title="Edit user settings" aria-hidden="true"></span>
+            <% end %>
         <% end %>
     </li>
 <% end %>
