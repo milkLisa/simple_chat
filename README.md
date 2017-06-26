@@ -1,7 +1,8 @@
 # Simple Chat
 
 Use devise, faye, private_pub, thin, SMTP and SMS. 
-Add rolify and cancancan to manage roles.
+
+Add rolify and cancancan to manage roles, and the first sign up user will be assigned as Admin.
 
 ## Preceding operation
 
@@ -25,7 +26,7 @@ Login [twilio](https://www.twilio.com/) account to get 'Account SID', 'Auth Toke
 ```rhtml
 	TWILIO_ACCOUNT_SID = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 	TWILIO_AUTH_TOKEN = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-	
+
 	@client.messages.create(
 		from: '+12345678912',
 		...
@@ -56,7 +57,7 @@ rails s
 
 ## Done
 
-Now open this URL in your browser, and sign in/sign up
+Now open this URL in your browser, and sign in/sign up.
 
 ```
 http://localhost:3000/
