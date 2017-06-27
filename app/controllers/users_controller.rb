@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     end
 
     def update
+        is_admin = (current_user.id != @user.id)
         result = true
         change_password = false
         if !params[:user][:password].blank?
@@ -23,8 +24,8 @@ class UsersController < ApplicationController
             change_password = true
         end
 
-        if can?(:manage, :all)
-            old_user = @user.dup
+        old_user = @user.dup
+        if is_admin
             admin_users = User.with_any_role(:admin)
         end
 
@@ -39,14 +40,14 @@ class UsersController < ApplicationController
 
         message_assign = ""
         message_modify_user = ""
-        message_modify_user = " by #{current_user.first_name.capitalize}(#{current_user.roles.first.name.capitalize})" if current_user.id != @user.id
+        message_modify_user = " by #{current_user.first_name.capitalize}(#{current_user.roles.first.name.capitalize})" if is_admin
 
         #update user profile
         if result
             update_result = @user.update(user_params(change_password))
 
             if update_result
-                if can? :manage, :all
+                if is_admin
                     #update user role
                     assigned_role = @user.roles.first.name
                     new_role = Role.find(params[:role]).name
@@ -73,7 +74,7 @@ class UsersController < ApplicationController
                             send_message(assigned_escrow.officer, msg_content, nil)
 
                             # E-mail to Admins
-                            message_assign = ", _pronouns_ has been assigned to Escrow Officer #{assigned_escrow.officer.first_name.capitalize}"
+                            message_assign = ", _pronouns_ has been assigned to Escrow Officer #{assigned_escrow.officer.first_name.capitalize}" if is_admin
                         end
                     end
                 end
@@ -86,12 +87,14 @@ class UsersController < ApplicationController
                     send_message(old_user, msg_content, nil)
 
                     # send E-mail to Admins
-                    msg_content = message_title.gsub("_name_", "Admin")
-                    msg_content += message_content.sub("_possessive_", "user #{old_user.first_name.capitalize}'s").gsub("_possessive_", "and").gsub("_pronouns_", "user #{old_user.first_name.capitalize}")
-                    msg_content += message_assign.gsub("_pronouns_", "user #{old_user.first_name.capitalize}")
-                    msg_content += message_modify_user
-                    admin_users.each do |user|
-                        send_message(user, msg_content, nil)
+                    if is_admin
+                        msg_content = message_title.gsub("_name_", "Admin")
+                        msg_content += message_content.sub("_possessive_", "user #{old_user.first_name.capitalize}'s").gsub("_possessive_", "and").gsub("_pronouns_", "user #{old_user.first_name.capitalize}")
+                        msg_content += message_assign.gsub("_pronouns_", "user #{old_user.first_name.capitalize}")
+                        msg_content += message_modify_user
+                        admin_users.each do |user|
+                            send_message(user, msg_content, nil)
+                        end
                     end
                 end
 
